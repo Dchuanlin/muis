@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+		<link rel="stylesheet" href="css/mui.min.css" />
+		<link rel="stylesheet" href="css/mui.picker.all.css" />
+		
+		<style>
+			.footer{
+				width: 100%;
+				height: 60px;
+				display: flex;
+				background-color:white;
+				position: fixed;
+				flex-direction: row;
+				left: 0px;
+				bottom: 0px;
+			}
+			.footer div{
+				width: 25%;
+				display: flex;
+				flex-direction: column;
+				justify-content: center;
+				text-align: center;
+				font-size: 18px;
+				color: #60636c;
+			}
+		</style>
+	</head>
+	<body>
+		<!-- 侧滑导航根容器 -->
+		<div class="mui-off-canvas-wrap mui-slide-in">
+			  <!-- 菜单容器 -->
+			  <aside class="mui-off-canvas-left">
+			    <div class="mui-scroll-wrapper">
+			      <div class="mui-scroll">
+			        <!-- 菜单具体展示内容 -->
+			        <!--列表栏-->
+			        <ul class="mui-table-view">
+					    <li class="mui-table-view-cell">Item 1</li>
+					    <li class="mui-table-view-cell">Item 2</li>
+					    <li class="mui-table-view-cell">Item 3</li>
+					</ul>
+			      </div>
+			    </div>
+			  </aside>
+		  <!-- 主页面容器 -->
+			  <div class="mui-inner-wrap">
+			  	<!--遮罩层-->
+			  	<div id="backdrop" class="mui-off-canvas-backdrop"></div> 
+			    <!-- 主页面标题 -->
+				    <header class="mui-bar mui-bar-nav">
+				      <a id="haha" class="mui-icon mui-action-menu mui-icon-bars mui-pull-left"></a>
+				      <h1 class="mui-title">标题</h1>
+				    </header>
+				    <div class="mui-content mui-scroll-wrapper">
+				      <div class="mui-scroll">
+				        <!-- 主界面具体展示内容 -->
+				        <button type="button" id="lala" class="mui-btn mui-btn-primary">蓝色</button>
+				        <button type="button" id="nana" class="mui-btn mui-btn-danger">警告</button>
+				        <button type="button" id="sasa" class="mui-btn mui-btn-success">绿色</button>
+				        <div style="height: 1000px;background-color: red;"></div>
+				        <div class="footer">
+							<div><span class="mui-icon mui-icon-home" style="font-size: 25px;"></span><span>首页</span></div>
+							<div><span class="mui-icon mui-icon-list" style="font-size: 25px;"></span><span>分类</span></div>
+							<div><span class="mui-icon mui-icon-trash" style="font-size: 25px;"></span><span>购物车</span></div>
+							<div><span class="mui-icon mui-icon-contact" style="font-size: 25px;"></span><span>我的</span></div>
+						</div>
+				      </div>
+				    </div>  
+			  </div>
+		</div>
+		
+		<div id="sheet1" class="mui-popover mui-popover-bottom mui-popover-action ">
+		    <!-- 可选择菜单 -->
+		    <ul class="mui-table-view">
+		      <li class="mui-table-view-cell">
+		        <a href="#">菜单1</a>
+		      </li>
+		      <li class="mui-table-view-cell">
+		        <a href="#">菜单2</a>
+		      </li>
+		    </ul>
+		    <!-- 取消菜单 -->
+		    <ul class="mui-table-view">
+		      <li class="mui-table-view-cell">
+		        <a href="#sheet1"><b>取消</b></a>
+		      </li>
+		    </ul>
+		</div>	
+		<script type="text/javascript" src="js/mui.min.js" ></script>
+		<script type="text/javascript" src="libs/zepto.js" ></script>
+		<script type="text/javascript" src="js/mui.picker.all.js" ></script>
+		<script>
+			Zepto("#haha").click(function(){
+				mui(".mui-off-canvas-wrap").offCanvas("show")
+			})
+			Zepto("#lala").click(function(){
+				mui('#sheet1').popover('toggle');
+			})
+			Zepto("#nana").click(function(){
+				var dtPicker = new mui.DtPicker();
+				dtPicker.show(function(e){
+//					alert(e.value)
+					console.log(e)
+					
+				});
+			})
+			Zepto("#sasa").click(function(){
+					var picker = new mui.PopPicker();
+					 picker.setData([{value:'zz',text:'智子'},
+			 						{value:'ku',text:'很反感'}
+			 						]);
+					 picker.show(function (selectItems) {
+					    console.log(selectItems[0].text);//智子
+					    console.log(selectItems[0].value);//zz 
+					  })
+			
+			})
+			mui('.mui-scroll-wrapper').scroll();	
+			
+		</script>
+	</body>
+</html>
